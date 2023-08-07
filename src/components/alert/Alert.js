@@ -3,13 +3,13 @@ import './Alert.css'
 import { FaExclamationCircle, FaTimes } from 'react-icons/fa'
 
 
-const Alert = () => {
+const Alert = ({alertContent, alertClass, onCloseAlert}) => {
   return (
-    <div className='alert'>
+    <div className={`alert ${alertClass}`}>
         <FaExclamationCircle size={16} className='icon-x'/>
-        <span className='msg'>Please enter name and date</span>
+        <span className='msg'>{alertContent}</span>
         
-        <div className="close-btn">
+        <div className="close-btn" onClick={onCloseAlert}>
             <FaTimes size={19} className='icon-x'/>
         </div>
     </div>

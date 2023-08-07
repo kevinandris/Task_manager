@@ -19,9 +19,9 @@ const TaskManagerReducer = () => {
     tasks,
     taskID: null,
     isEditing: false,
-    isAlertOpen: false,
+    isAlertOpen: true,
     alertContent: "This is an alert",
-    alertClass: "success"
+    alertClass: "danger"
   }
 
   const [state, dispatch] = useReducer(taskReducer, initialState)
@@ -31,6 +31,8 @@ const TaskManagerReducer = () => {
   useEffect(() => {
     nameInputRef.current.focus();
   })
+
+  const closeAlert = () => {}
 
   const handleSubmit = (e) => {
     // preventing the page from refreshing
@@ -55,7 +57,7 @@ const TaskManagerReducer = () => {
   
   return (
     <div className='--bg-primary'>
-      {state.isAlertOpen && <Alert /> }
+      {state.isAlertOpen && <Alert alertContent={state.alertContent} alertClass={state.alertClass} onCloseAlert={closeAlert}/> }
       
       {/* <Confirm /> */}
       <h2 className='--text-center --text-light'>Task Manager Reducer</h2>
