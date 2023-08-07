@@ -66,6 +66,7 @@ const TaskManager = () => {
     setDate(thisTask.date)
   }
 
+  // delete function
   const deleteTask = (id) => {
     // to check the id for every data
     console.log(id);
@@ -74,6 +75,19 @@ const TaskManager = () => {
       const newTask = tasks.filter((task) => task.id !== id)
       setTasks(newTask);
     }
+  }
+
+  // complete function
+  const completeTask = (id) => {
+    setTasks(
+      tasks.map((task) => {
+        if (task.id === id) {
+          return {...task, complete: true}
+        }
+
+        return task;
+      })
+    )
   }
   
   return (
@@ -113,7 +127,7 @@ const TaskManager = () => {
           ) : (
             <div>
               {tasks.map((task) => {
-                return <Task{...task} editTask={editTask} deleteTask={deleteTask}/>
+                return <Task{...task} editTask={editTask} deleteTask={deleteTask}completeTask={completeTask}/>
               })}
             </div>
           )}
