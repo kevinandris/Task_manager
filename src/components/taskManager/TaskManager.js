@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
+import useLocalStorage from 'use-local-storage'
 import './TaskManager.css'
 import Task from './Task'
 
@@ -6,7 +7,7 @@ const TaskManager = () => {
 
   const [name, setName] = useState("")
   const [date, setDate] = useState("")
-  const [tasks, setTasks] = useState([])
+  const [tasks, setTasks] = useLocalStorage("tasks", [])
   
   const [taskID, setTaskID] = useState(null)
   const [isEditing, setIsEditing] = useState(false);
@@ -127,7 +128,11 @@ const TaskManager = () => {
           ) : (
             <div>
               {tasks.map((task) => {
-                return <Task{...task} editTask={editTask} deleteTask={deleteTask}completeTask={completeTask}/>
+                return <Task{...task} 
+                  editTask={editTask} 
+                  deleteTask={deleteTask}
+                  completeTask={completeTask}
+                />
               })}
             </div>
           )}
