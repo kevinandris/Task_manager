@@ -1,5 +1,5 @@
 import React from 'react'
-import '/Confirm.css'
+import './Confirm.css'
 
 const Confirm = () => {
   return (
