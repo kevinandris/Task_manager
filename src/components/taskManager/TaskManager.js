@@ -55,7 +55,6 @@ const TaskManager = () => {
       setName("")
       setDate("")
     }
-
   };
 
   //* Push (edit) the task to the task and date input when edit icon is clicked
@@ -65,6 +64,16 @@ const TaskManager = () => {
     setTaskID(id)
     setName(thisTask.name)
     setDate(thisTask.date)
+  }
+
+  const deleteTask = (id) => {
+    // to check the id for every data
+    console.log(id);
+
+    if (window.confirm("Delete this task") === true) {
+      const newTask = tasks.filter((task) => task.id !== id)
+      setTasks(newTask);
+    }
   }
   
   return (
@@ -104,7 +113,7 @@ const TaskManager = () => {
           ) : (
             <div>
               {tasks.map((task) => {
-                return <Task{...task} editTask={editTask}/>
+                return <Task{...task} editTask={editTask} deleteTask={deleteTask}/>
               })}
             </div>
           )}
