@@ -15,12 +15,29 @@ const TaskManager = () => {
   })
 
   const handleSubmit = (e) => {
-    // preventing the refresh
+    // preventing the page from refreshing
     e.preventDefault();
 
+    // To check if values are stored
     console.log(name)
     console.log(date)
 
+    if (!name && !date || !name || !date) {
+      alert("Please enter task name and date");
+    } else {
+      const newTask = {
+        id: Date.now(),
+        name,
+        date,
+        complete: true,
+      }
+
+      console.log(newTask);
+
+      setTasks([...tasks,newTask])
+      setName("")
+      setDate("")
+    }
 
   };
   
@@ -53,8 +70,15 @@ const TaskManager = () => {
         <div className="--width-500px --p">
           <h2 className='--text-light'>Task List</h2>
           <hr style={{ background: "#fff" }}/>
-
-          <Task />
+          {tasks.length === 0 ? (
+            <p className='--text-light'>No task added...</p>
+          ) : (
+            <div>
+              {tasks.map((task) => {
+                return <Task{...task}/>
+              })}
+            </div>
+          )}
         </div>
       </article>
 
