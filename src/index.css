@@ -319,7 +319,7 @@ p {
 /* Background */
 .--bg-light {
   background: #fff;
-}
+}  
 .--bg-dark {
   background: var(--color-dark);
 }
