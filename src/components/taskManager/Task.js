@@ -1,3 +1,4 @@
+// ! child class -- exported to TaskManager.js
 import React from 'react'
 import { FaCheckDouble, FaEdit, FaTrashAlt} from "react-icons/fa"
 

@@ -1,3 +1,4 @@
+// ! Parent class
 import { useState, useRef, useEffect } from 'react'
 import useLocalStorage from 'use-local-storage'
 import './TaskManager.css'
