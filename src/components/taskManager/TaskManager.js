@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import './TaskManager.css'
 import Task from './Task'
 
@@ -7,6 +7,12 @@ const TaskManager = () => {
   const [name, setName] = useState("")
   const [date, setDate] = useState("")
   const [tasks, setTasks] = useState([])
+
+  const nameInputRef = useRef(null)
+
+  useEffect(() => {
+    nameInputRef.current.focus();
+  })
 
   const handleSubmit = (e) => {
     // preventing the refresh
@@ -28,7 +34,7 @@ const TaskManager = () => {
         <form onSubmit={handleSubmit} className='form --form-control'>
           <div>
             <label htmlFor="name">Task:</label>
-            <input type="text" placeholder='Task name' name='name' value={name} onChange={(e) => setName(e.target.value)}/>
+            <input ref={nameInputRef} type="text" placeholder='Task name' name='name' value={name} onChange={(e) => setName(e.target.value)}/>
           </div>
           
           <div>
