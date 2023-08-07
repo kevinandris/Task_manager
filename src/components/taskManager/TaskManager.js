@@ -86,7 +86,7 @@ const TaskManager = () => {
             <input type="date" placeholder='Task name' name='date' value={date} onChange={(e) => setDate(e.target.value)}/>
           </div>
 
-          <button className="--btn --btn-success --btn-block">Save Task</button>
+          <button className="--btn --btn-success --btn-block">{isEditing ? "Edit Task" : "Save Task"}</button>
         </form>
 
        </div>
