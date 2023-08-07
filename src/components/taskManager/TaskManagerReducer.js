@@ -4,6 +4,7 @@ import useLocalStorage from 'use-local-storage'
 import './TaskManager.css'
 import Task from './Task'
 import Alert from '../alert/Alert'
+import Confirm from '../confirm/Confirm'
 
 const TaskManagerReducer = () => {
 
@@ -95,7 +96,8 @@ const TaskManagerReducer = () => {
   
   return (
     <div className='--bg-primary'>
-      <Alert />
+      {/* <Alert /> */}
+      <Confirm />
       <h2 className='--text-center --text-light'>Task Manager Reducer</h2>
 
       <div className='--flex-center --p'>
