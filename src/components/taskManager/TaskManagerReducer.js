@@ -305,16 +305,22 @@ const TaskManagerReducer = () => {
   
   return (
     <div className='--bg-primary'>
-      {state.isAlertOpen && <Alert alertContent={state.alertContent} alertClass={state.alertClass} onCloseAlert={closeAlert}/> }
+      {state.isAlertOpen && 
+        <Alert 
+            alertContent={state.alertContent} 
+            alertClass={state.alertClass} 
+            onCloseAlert={closeAlert}/> 
+      }
 
       {state.isEditModalOpen && 
-      <Confirm  
-          modalTitle={state.modalTitle} 
-          modalMsg={state.modalMsg} 
-          modalActionText={state.modalActionText} 
-          modalAction={editTask} 
-          onCloseModal={closeModal}
-        />}
+        <Confirm  
+            modalTitle={state.modalTitle} 
+            modalMsg={state.modalMsg} 
+            modalActionText={state.modalActionText} 
+            modalAction={editTask} 
+            onCloseModal={closeModal}
+          />
+      }
 
       {state.isDeleteModalOpen && (
         <Confirm  

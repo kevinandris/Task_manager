@@ -1,3 +1,4 @@
+// ! child class -- exported to TaskManagerReducer.js
 import React, { useEffect } from 'react'
 import './Alert.css'
 import { FaExclamationCircle, FaTimes } from 'react-icons/fa'
