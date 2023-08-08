@@ -48,6 +48,10 @@ const taskReducer = (state, action) => {
     }
   }
 
+  if (action.type === "CLOSE_MODAL") {
+    return  {...state, isEditModalOpen: false}
+  }
+
   if (action.type === "EDIT_TASK") {
     return {...state, isEditing: true}
   }
@@ -142,6 +146,7 @@ const TaskManagerReducer = () => {
     
     setName(thisTask.name)
     setDate(thisTask.date)
+    closeModal()
   }
 
   // delete function
@@ -154,8 +159,10 @@ const TaskManagerReducer = () => {
     
   }
 
-  const closeModal = (id) => {
-    
+  const closeModal = () => {
+    dispatch({
+      type: "CLOSE_MODAL",
+    })
   }
   
   return (
