@@ -47,6 +47,10 @@ const taskReducer = (state, action) => {
       modalActionText: "Edit",
     }
   }
+
+  if (action.type === "EDIT_TASK") {
+    return {...state, isEditing: true}
+  }
   
   return state;
 };
@@ -124,8 +128,20 @@ const TaskManagerReducer = () => {
   };
 
   //* Push (edit) the task to the task and date input when edit icon is clicked
-  const editTask = (id) => {
+  const editTask = () => {
+    console.log(state.taskID);
+
+    const id = state.taskID
+
+    dispatch({
+      type: "EDIT_TASK",
+      payload: id,
+    })
+
+    const thisTask = state.tasks.find((task) => task.id === id)
     
+    setName(thisTask.name)
+    setDate(thisTask.date)
   }
 
   // delete function
