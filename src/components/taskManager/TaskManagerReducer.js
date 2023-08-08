@@ -55,6 +55,28 @@ const taskReducer = (state, action) => {
   if (action.type === "EDIT_TASK") {
     return {...state, isEditing: true}
   }
+
+  if (action.type === "UPDATE_TASK") {
+    const updatedTask = action.payload
+    const id = action.payload.id
+
+    // Find the task index
+    const taskIndex = state.tasks.findIndex((task) => {
+      return task.id === id
+    })
+
+    // replace the task by its index
+    if (taskIndex !== -1) {
+      state.tasks[taskIndex] = updatedTask
+    }
+
+    return {...state, 
+      isEditing: false,
+      isAlertOpen: true,
+      alertContent: "Task edited successfully",
+      alertClass: "success",
+    }
+  }
   
   return state;
 };
@@ -102,6 +124,34 @@ const TaskManagerReducer = () => {
       dispatch({
         type: "EMPTY_FIELDS"
       })
+    }
+
+    if (name && date && state.isEditing) {
+      const updatedTask = {
+        id: state.taskID,
+        name,
+        date,
+        complete: false
+      };
+
+      dispatch({
+        type: "UPDATE_TASK",
+        payload: updatedTask,
+      })
+
+      setName("");
+      setDate("");
+      setTasks(
+        tasks.map((task) => {
+          if (task.id === updatedTask) {
+            return {...task, name, date, complete: false}
+          }
+
+          return task;
+        })
+      )
+      
+      return;
     }
 
     if (name && date) {
@@ -188,7 +238,7 @@ const TaskManagerReducer = () => {
             <input type="date" placeholder='Task name' name='date' value={date} onChange={(e) => setDate(e.target.value)}/>
           </div>
 
-          <button className="--btn --btn-success --btn-block">{isEditing? "Edit Task" : "Save Task"}</button>
+          <button className="--btn --btn-success --btn-block">{state.isEditing ? "Edit Task" : "Save Task"}</button>
         </form>
 
        </div>
