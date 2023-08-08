@@ -6,8 +6,18 @@ import Task from './Task'
 import Alert from '../alert/Alert'
 import Confirm from '../confirm/Confirm'
 
-const taskReducer = (state, action) => {};
+const taskReducer = (state, action) => {
+  if (action.type === "EMPTY_FIELD") {
+    return {
+      ...state, 
+      isAlertOpen: true,
+      alertContent: "Please enter name and date",
+      alertClass: "danger"
+    }
+  }
 
+  return state;
+};
 
 const TaskManagerReducer = () => {
   
@@ -19,7 +29,7 @@ const TaskManagerReducer = () => {
     tasks,
     taskID: null,
     isEditing: false,
-    isAlertOpen: true,
+    isAlertOpen: false,
     alertContent: "This is an alert",
     alertClass: "danger"
   }
@@ -37,6 +47,12 @@ const TaskManagerReducer = () => {
   const handleSubmit = (e) => {
     // preventing the page from refreshing
     e.preventDefault();
+
+    if (!name || !date) {
+      dispatch({
+        type: "EMPTY_FIELDS"
+      })
+    }
 
   };
 
@@ -77,7 +93,7 @@ const TaskManagerReducer = () => {
             <input type="date" placeholder='Task name' name='date' value={date} onChange={(e) => setDate(e.target.value)}/>
           </div>
 
-          {/* <button className="--btn --btn-success --btn-block">{isEditing ? "Edit Task" : "Save Task"}</button> */}
+          <button className="--btn --btn-success --btn-block">{isEditing ? "Edit Task" : "Save Task"}</button>
         </form>
 
        </div>
