@@ -36,6 +36,18 @@ const taskReducer = (state, action) => {
     }
   }
 
+  if (action.type === "OPEN_EDIT_MODAL") {
+    console.log(action.payload)
+
+    return {...state, 
+      taskID: action.payload,
+      isEditModalOpen: true, 
+      modalTitle: "Edit Task",
+      modalMsg: "You are about to edit this task",
+      modalActionText: "Edit",
+    }
+  }
+  
   return state;
 };
 
@@ -104,6 +116,13 @@ const TaskManagerReducer = () => {
 
   };
 
+  const openEditModal = (id) => {
+    dispatch({
+      type: "OPEN_EDIT_MODAL",
+      payload: id
+    })
+  };
+
   //* Push (edit) the task to the task and date input when edit icon is clicked
   const editTask = (id) => {
     
@@ -118,7 +137,7 @@ const TaskManagerReducer = () => {
   const completeTask = (id) => {
     
   }
-  
+
   const closeModal = (id) => {
     
   }
@@ -164,8 +183,8 @@ const TaskManagerReducer = () => {
           ) : (
             <div>
               {state.tasks.map((task) => {
-                return <Task{...task} 
-                  editTask={editTask} 
+                return <Task {...task} 
+                  editTask={openEditModal} 
                   deleteTask={deleteTask}
                   completeTask={completeTask}
                 />
