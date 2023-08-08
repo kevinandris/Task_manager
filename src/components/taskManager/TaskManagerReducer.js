@@ -13,7 +13,14 @@ const taskReducer = (state, action) => {
       isAlertOpen: true,
       alertContent: "Please enter name and date",
       alertClass: "danger"
-    }
+    };
+  }
+
+  if (action.type === "CLOSE_ALERT") {
+    return {
+      ...state, 
+      isAlertOpen: false,
+    };
   }
 
   return state;
@@ -42,7 +49,11 @@ const TaskManagerReducer = () => {
     nameInputRef.current.focus();
   })
 
-  const closeAlert = () => {}
+  const closeAlert = () => {
+    dispatch({
+      type: "CLOSE_ALERT"
+    })
+  }
 
   const handleSubmit = (e) => {
     // preventing the page from refreshing
@@ -93,7 +104,7 @@ const TaskManagerReducer = () => {
             <input type="date" placeholder='Task name' name='date' value={date} onChange={(e) => setDate(e.target.value)}/>
           </div>
 
-          <button className="--btn --btn-success --btn-block">{isEditing ? "Edit Task" : "Save Task"}</button>
+          <button className="--btn --btn-success --btn-block">{isEditing? "Edit Task" : "Save Task"}</button>
         </form>
 
        </div>
