@@ -49,7 +49,7 @@ const taskReducer = (state, action) => {
   }
 
   if (action.type === "CLOSE_MODAL") {
-    return  {...state, isEditModalOpen: false}
+    return  {...state, isEditModalOpen: false, isDeleteModalOpen: false}
   }
 
   if (action.type === "EDIT_TASK") {
@@ -75,6 +75,18 @@ const taskReducer = (state, action) => {
       isAlertOpen: true,
       alertContent: "Task edited successfully",
       alertClass: "success",
+    }
+  }
+
+  if (action.type === "OPEN_DELETE_MODAL") {
+    console.log(action.payload)
+
+    return {...state,
+      taskID: action.payload,
+      isDeleteModalOpen: true,
+      modalTitle: "Delete Task",
+      modalMsg: "You are about to delete a task ",
+      modalActionText: "Delete"
     }
   }
   
@@ -181,6 +193,14 @@ const TaskManagerReducer = () => {
     })
   };
 
+  const openDeleteModal = (id) => {
+    dispatch({
+      type: "OPEN_DELETE_MODAL",
+      payload: id,
+    })
+  }
+
+
   //* Push (edit) the task to the task and date input when edit icon is clicked
   const editTask = () => {
     console.log(state.taskID);
@@ -219,7 +239,25 @@ const TaskManagerReducer = () => {
     <div className='--bg-primary'>
       {state.isAlertOpen && <Alert alertContent={state.alertContent} alertClass={state.alertClass} onCloseAlert={closeAlert}/> }
 
-      {state.isEditModalOpen && <Confirm  modalTitle={state.modalTitle} modalMsg={state.modalMsg} modalActionText={state.modalActionText} modalAction={editTask} onCloseModal={closeModal}/>}
+      {state.isEditModalOpen && 
+      <Confirm  
+          modalTitle={state.modalTitle} 
+          modalMsg={state.modalMsg} 
+          modalActionText={state.modalActionText} 
+          modalAction={editTask} 
+          onCloseModal={closeModal}
+        />}
+
+      {state.isDeleteModalOpen && (
+        <Confirm  
+          modalTitle={state.modalTitle} 
+          modalMsg={state.modalMsg} 
+          modalActionText={state.modalActionText} 
+          modalAction={deleteTask} 
+          onCloseModal={closeModal}
+        />
+      )}
+        
       
       <h2 className='--text-center --text-light'>Task Manager Reducer</h2>
 
@@ -258,7 +296,7 @@ const TaskManagerReducer = () => {
               {state.tasks.map((task) => {
                 return <Task {...task} 
                   editTask={openEditModal} 
-                  deleteTask={deleteTask}
+                  deleteTask={openDeleteModal}
                   completeTask={completeTask}
                 />
               })}
