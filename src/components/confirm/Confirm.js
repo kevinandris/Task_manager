@@ -1,3 +1,4 @@
+// ! child class -- exported to TaskManagerReducer.js
 import React from 'react'
 import './Confirm.css'
 

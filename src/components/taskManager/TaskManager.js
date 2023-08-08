@@ -121,7 +121,7 @@ const TaskManager = () => {
       <article className='--flex-center --my2'>
         <div className="--width-500px --p">
           <h2 className='--text-light'>Task List</h2>
-          <hr style={{ background: "#fff" }}/>
+          <hr style={{ background: "#FFF" }}/>
 
           {/* // ! CONDITION */}
           {tasks.length === 0 ? (

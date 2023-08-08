@@ -178,7 +178,7 @@ const TaskManagerReducer = () => {
 
     if (!name || !date) {
       dispatch({
-        type: "EMPTY_FIELDS"
+        type: "EMPTY_FIELD"
       })
     }
 
@@ -354,7 +354,7 @@ const TaskManagerReducer = () => {
       <article className='--flex-center --my2'>
         <div className="--width-500px --p">
           <h2 className='--text-light'>Task List</h2>
-          <hr style={{ background: "#fff" }}/>
+          <hr style={{ backgroundColor: "#fff" }} />
 
           {/* // ! CONDITION */}
           {state.tasks.length === 0 ? (
