@@ -89,6 +89,21 @@ const taskReducer = (state, action) => {
       modalActionText: "Delete"
     }
   }
+
+  if (action.type === "DELETE_TASK") {
+    const id = action.payload
+    const newTasks = state.tasks.filter((task) => task.id !== id)
+
+    return {
+      ...state,
+      tasks: newTasks,
+      isAlertOpen: true,
+      alertContent: "Task deleted successfully",
+      alertClass: "success",
+      isDeleteModalOpen: false,
+
+    }
+  }
   
   return state;
 };
@@ -220,9 +235,20 @@ const TaskManagerReducer = () => {
   }
 
   // delete function
-  const deleteTask = (id) => {
-    
-  }
+  const deleteTask = () => {
+   /*  console.log(state.taskID) */
+
+    const id = state.taskID
+
+    dispatch({
+      type: "DELETE_TASK",
+      payload: id
+    })
+
+    // syncing the data inside local storage when a list is deleted on the page
+    const newTasks = tasks.filter((task) => task.id !== id)
+    setTasks(newTasks)
+  };
 
   // complete function
   const completeTask = (id) => {
