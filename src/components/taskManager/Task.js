@@ -6,11 +6,11 @@ const Task = ( {id, name, date, complete, editTask, deleteTask, completeTask} ) 
   return (
     <div key={id} className={complete ? "task complete" : "task"}>
       <span>
-        <p><b>Task</b> {name}</p>
-        <p><b>Date</b> {date}</p>
+        <p><b>Task:</b> {name}</p>
+        <p><b>Date:</b> {date}</p>
       </span>
 
-      <span>
+      <span className='buttonContainer'>
         <button onClick={() => editTask(id)}>
           <FaEdit color='green'/>
         </button>

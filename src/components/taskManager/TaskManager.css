@@ -8,6 +8,18 @@ body {
     width: 100%;
   }
 
+  .buttonContainer {
+    width: 50px;
+    column-gap: 4px;
+    margin-right: 5px;
+
+    /* background-color: #eee; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+
   .task {
     display: flex;
     justify-content: space-between;
