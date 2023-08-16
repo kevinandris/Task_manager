@@ -14,8 +14,9 @@
 
     3) A reminder message appears when a user tries to delete a task -- using reducer
 ![taskManager3](https://github.com/kevinandris/Task_manager/assets/102328858/4073f807-0213-43ce-be74-a530ddc82124)
-    
-    
+
+    4) A completed word appears underneath and red vertical line on the left side when a user clicks the complete icon and a reminder message also appears.
+![taskManager4](https://github.com/kevinandris/Task_manager/assets/102328858/0e7215d8-ff31-41d2-9d85-53ce7bf986e5)
     
 
 #   To run the project:
