@@ -11,6 +11,10 @@
 
     2) A reminder message appears when a user tries to update a task -- using reducer
 ![taskManager2](https://github.com/kevinandris/Task_manager/assets/102328858/7dac3428-f426-4785-b712-1d7083e63cd1)
+
+    3) A reminder message appears when a user tries to delete a task -- using reducer
+![taskManager3](https://github.com/kevinandris/Task_manager/assets/102328858/4073f807-0213-43ce-be74-a530ddc82124)
+    
     
     
 
